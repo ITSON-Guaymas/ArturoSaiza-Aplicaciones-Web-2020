@@ -1,6 +1,7 @@
 <?php
 
 $dataAlumno = array(
+    "Nombre" => "Sergio Felipe",
     "edad" => 20,
     "telefono" => "622 1481247",
     "ID" => "0000042124",
