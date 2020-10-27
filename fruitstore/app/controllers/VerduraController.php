@@ -1,6 +1,6 @@
 <?php 
  include_once "app/models/Verdura.php";  
- use app\models\Verdura as V ;  
+ use app\models\Verdura as Verdura;  
 
 class VerduraController{
 
