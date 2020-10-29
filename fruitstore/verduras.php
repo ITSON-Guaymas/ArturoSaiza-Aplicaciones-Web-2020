@@ -3,8 +3,10 @@
 
   include_once "app/controllers/VerduraController.php";  
   use app\controllers\VerduraController as VerduraController;  
-
-  $ListaVerduras = VerduraController::listaVerduras();
+  
+  $verduraController = new VerduraController();
+  $ListaVerduras = $verduraController ->listaVerduras();
+  //$ListaVerduras = VerduraController::listaVerduras();
 
 ?>
 
@@ -56,6 +58,13 @@
 </pre>
         <!-- /. inicio tabla verduras -->
         <div class="row">
+
+        <div class="col-12">
+          <a href="agregarVerdura.php" class="btn btn-success">Agregar</a>
+          <br><br>
+        </div>
+
+
           <div class="col-12">
             <div class="card">
               <div class="card-header">
@@ -89,7 +98,7 @@
                     <tr>
                       <td><?=$verdura->codigo; ?></td>
                       <td><?=$verdura->nombre; ?></td>
-                      <td><?=$verdura->precioIVA(); ?></td>
+                      <td>  $<?=$verdura->precioIVA(); ?></td>
                       <td><span class="tag tag-success" style="background:<?=$verdura->color; ?>;  color:#fff; padding:4px; border-radio:5px;"> <?=$verdura->color; ?></span></td>
                     </tr> 
                   <?php } ?>
