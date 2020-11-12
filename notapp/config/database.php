@@ -1,5 +1,5 @@
 <?php
-
+namespace config;
 class MySQL{
 
   private $servidor = 'localhost';
@@ -23,10 +23,21 @@ class MySQL{
   $this->total_consultas++;
   $resultado = mysqli_query($this->conexion,$consulta);
   if(!$resultado){
-  echo 'MySQL Error: ' . mysqli_error();
-  exit;
+  //echo 'MySQL Error: ' . mysqli_error();
+  //exit;
+  return false;
   }
   return $resultado;
+  }
+
+
+  public function insert(){
+    $resultado = mysqli_query($this->conexion,$consulta);
+    if($resultado){ 
+      return mysqli_insert_id($conn); 
+    } else { 
+      return false;
+    }
   }
 
  public function fetch_array($consulta){
@@ -44,26 +55,18 @@ class MySQL{
 
  public function getTotalConsultas(){
   return $this->total_consultas;
-  }
+  } 
 
- public function filas($consulta){
-  $linea=mysqli_fetch_assoc($consulta);
-  if(mysqli_num_rows($consulta)){do{
-  $res[]=$linea;
-  }while($linea=mysqli_fetch_assoc($consulta));}
-  return  $res;
-  }
-
-  public function filas2($consulta){
-  $linea=mysqli_fetch_assoc($consulta);
-  $res['num']=mysqli_num_rows($consulta);
-  if($res['num']){
-    do{
-  $res['fila'][]=$linea;
-  }while($linea=mysqli_fetch_assoc($consulta));
-
-}
-  return  $res;
+  public function get($consulta){
+    $linea=mysqli_fetch_assoc($consulta);
+    $res= new \stdClass;
+    $res -> count = mysqli_num_rows($consulta);
+    if($res -> count){
+      do{
+          $res->result[]=$linea;
+          }while($linea=mysqli_fetch_assoc($consulta));
+        }
+    return   $res;
   }
 
 }
