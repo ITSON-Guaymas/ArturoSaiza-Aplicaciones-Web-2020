@@ -9,7 +9,7 @@ use app\controllers\UsuarioController;
     $usuarioController = new UsuarioController();
 
     $UsuarioEncontrado = $usuarioController->login($_POST["correo"], $_POST["contrasena"]); 
-    echo $usuarioController->create( ); 
+   // echo $usuarioController->create( ); 
         
    //echo "<pre>"; print_r($UsuarioEncontrado); echo "</pre>"; 
     
