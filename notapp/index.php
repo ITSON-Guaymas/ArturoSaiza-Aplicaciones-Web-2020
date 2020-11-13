@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+if(!isset($_SESSION["usuario"])){
+  header("location:login.php");
+}
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -39,9 +47,13 @@
           <div class="col-12">
             <!-- Default box -->
 <!-- desde aqui podemos cambiar todo el contenido -->
+<pre>
+<?php
 
+print_r($_SESSION["usuario"]);
 
-          
+?>
+</pre>          
 
 
 <!-- hasta aqui, podemos cambiar todo el contenido -->

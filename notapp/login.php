@@ -3,6 +3,12 @@
 include_once("app/controllers/UsuarioController.php");
 use app\controllers\UsuarioController;
 
+ if(isset($_GET["logout"])){
+  $usuarioController = new UsuarioController();
+  $usuarioController->logout();
+  header("location:login.php");
+ }
+
 
   if( isset($_POST["correo"]) ){
 
@@ -11,10 +17,10 @@ use app\controllers\UsuarioController;
     $UsuarioEncontrado = $usuarioController->login($_POST["correo"], $_POST["contrasena"]); 
    // echo $usuarioController->create( ); 
         
-   //echo "<pre>"; print_r($UsuarioEncontrado); echo "</pre>"; 
-    
-   if($UsuarioEncontrado->count){
-      header("location:index.php");
+   // echo "<pre>"; print_r($UsuarioEncontrado); echo "</pre>"; 
+  
+   if($UsuarioEncontrado->count != 0){
+       header("location:index.php");
     }else{
       $error="Usuario o contraseña incorrecta!!";
     } 
