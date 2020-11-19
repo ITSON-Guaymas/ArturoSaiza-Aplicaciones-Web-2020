@@ -11,6 +11,11 @@ use app\models\Nota;
   
       }
 
+
+      public function eliminar($id){
+        return Nota::delete($id);
+      }
+
     
       public function lista(){
         return Nota::all();

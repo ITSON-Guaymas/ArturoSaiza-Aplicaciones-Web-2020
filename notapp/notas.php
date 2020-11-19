@@ -3,11 +3,18 @@
  use  app\controllers\NotasController;
 
  $notasController = new NotasController();
-
- $todasLasNotas =  $notasController->lista();
-
+ 
  //print_r($todasLasNotas);
 
+ if(isset($_GET['eliminar'])){
+
+ $statusEliminar = $notasController -> eliminar($_GET['eliminar']);
+
+ }
+
+ 
+ 
+ $todasLasNotas =  $notasController->lista();
 
 ?>
 
@@ -88,7 +95,14 @@
                       <td><?= $nota["cuerpo"]; ?></td>
                       <td><?= $nota["fecha"]; ?></td>
                       <td><?= $nota["tipo"]; ?></td>
-                      <td><span class="badge bg-danger">editar</span></td>
+                      <td>
+                      <a href="notasEditar.php?id=<?= $nota["id"]; ?>">
+                        <span class="badge bg-warning">editar</span>
+                      </a>
+                      <a href="?eliminar=<?= $nota["id"]; ?>">
+                        <span class="badge bg-danger">eliminar</span>
+                      </a>
+                      </td>
                     </tr>
                     <tr>
      

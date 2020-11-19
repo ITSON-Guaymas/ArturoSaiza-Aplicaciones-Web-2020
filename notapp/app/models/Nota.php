@@ -21,6 +21,14 @@ class Nota{
     }
 
 
+    public static function delete($id){
+        $mysql = new MYSQL();
+        $sql = "DELETE FROM notas WHERE  id=$id;";
+        return $mysql->consulta($sql);
+
+    }
+
+
 
     public static function all(){
         $mysql = new MYSQL();
