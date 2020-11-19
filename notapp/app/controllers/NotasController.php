@@ -12,6 +12,11 @@ use app\models\Nota;
       }
 
     
+      public function lista(){
+        return Nota::all();
+      }
+
+
       public function agregar($notaPOST){
 
         if(isset($notaPOST['realizada'])){

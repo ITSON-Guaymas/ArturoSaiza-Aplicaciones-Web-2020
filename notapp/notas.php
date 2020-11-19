@@ -1,3 +1,16 @@
+<?php
+ include_once("app/controllers/NotasController.php");
+ use  app\controllers\NotasController;
+
+ $notasController = new NotasController();
+
+ $todasLasNotas =  $notasController->lista();
+
+ //print_r($todasLasNotas);
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -57,51 +70,31 @@
                       <th style="width: 10px">#</th>
                       <th>Titulo</th>
                       <th>Nota</th>
-                      <th style="width: 40px">Fecha</th>
+                      <th>Fecha</th> 
+                      <th>tipo</th> 
                       <th style="width: 40px">  </th>
                     </tr>
                   </thead>
                   <tbody>
+
+                  <?php
+                  $count = $todasLasNotas->count;
+                  foreach ($todasLasNotas->result as $i => $nota) {  ?>
                     <tr>
-                      <td>1.</td>
-                      <td>Update software</td>
+                      <td> <?= $count-- ?> </td>
                       <td>
-                        <div class="progress progress-xs">
-                          <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                        </div>
-                      </td>
-                      <td><span class="badge bg-danger">55%</span></td>
+                     
+                      <?= $nota["titulo"]; ?></td>
+                      <td><?= $nota["cuerpo"]; ?></td>
+                      <td><?= $nota["fecha"]; ?></td>
+                      <td><?= $nota["tipo"]; ?></td>
+                      <td><span class="badge bg-danger">editar</span></td>
                     </tr>
                     <tr>
-                      <td>2.</td>
-                      <td>Clean database</td>
-                      <td>
-                        <div class="progress progress-xs">
-                          <div class="progress-bar bg-warning" style="width: 70%"></div>
-                        </div>
-                      </td>
-                      <td><span class="badge bg-warning">70%</span></td>
-                    </tr>
-                    <tr>
-                      <td>3.</td>
-                      <td>Cron job running</td>
-                      <td>
-                        <div class="progress progress-xs progress-striped active">
-                          <div class="progress-bar bg-primary" style="width: 30%"></div>
-                        </div>
-                      </td>
-                      <td><span class="badge bg-primary">30%</span></td>
-                    </tr>
-                    <tr>
-                      <td>4.</td>
-                      <td>Fix and squish bugs</td>
-                      <td>
-                        <div class="progress progress-xs progress-striped active">
-                          <div class="progress-bar bg-success" style="width: 90%"></div>
-                        </div>
-                      </td>
-                      <td><span class="badge bg-success">90%</span></td>
-                    </tr>
+     
+                  <?php } ?>
+       
+            
                   </tbody>
                 </table>
               </div>

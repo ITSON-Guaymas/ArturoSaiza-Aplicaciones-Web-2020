@@ -20,6 +20,15 @@ class Nota{
         
     }
 
+
+
+    public static function all(){
+        $mysql = new MYSQL();
+        $sql = "select * from notas order by id DESC";
+        $consulta =  $mysql->consulta($sql);
+        return  $mysql->get($consulta);
+    }
+
     public static function create($notaPOST){
 
         $mysql = new MYSQL();

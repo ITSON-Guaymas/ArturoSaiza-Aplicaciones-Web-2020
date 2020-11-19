@@ -8,6 +8,11 @@ if(isset($_POST["titulo"])){
 
   $r= $notasC->agregar($_POST);
 
+  if($r){
+    header("location:notas.php?notaagregada=$r");
+  }else{
+    $error="Completa correctamente el formulario";
+  }
 
   /*echo "<br>";
    print_r($_POST);
@@ -45,9 +50,9 @@ if(isset($_POST["titulo"])){
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1>Agregar Nota</h1>
-            <h1><?= $r; ?></h1>
+            <p><?= isset($error)? $error : " "  ; ?> </p>
           </div>
-           
+          
         </div>
       </div><!-- /.container-fluid -->
     </section>
@@ -63,7 +68,9 @@ if(isset($_POST["titulo"])){
      
         <div class="form-group col-md-4">
           <label for="">Titulo</label>
-          <input class="form-control" type="text" name="titulo">
+          <input class="form-control" type="text" name="titulo"
+          value="<?= isset($_POST['titulo'])? $_POST['titulo'] : ""  ; ?>"
+          >
         </div>
        
         <div class="form-group col-md-4">
