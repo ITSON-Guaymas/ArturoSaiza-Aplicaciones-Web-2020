@@ -11,6 +11,15 @@ use app\models\Nota;
   
       }
 
+      public function get($id){
+        $r = Nota::get($id);
+        if($r->count>0){
+         return  $r-> result[0];
+        }else{
+          return false;
+        }
+
+      }
 
       public function eliminar($id){
         return Nota::delete($id);
