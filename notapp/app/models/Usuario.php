@@ -31,14 +31,14 @@ class Usuario{
        return  $mysql->get($sql);      
     }
 
-    /*
+    
     public static function create(){
         $mysql = new MYSQL();
         $sql =  $mysql->consulta("INSERT INTO usuarios (nombre, apellidos, correo,contrasena,tipo)
         VALUES ('John', 'Doe', 'john@exampled.com', 'asd', 'normal')");     
         return  $sql;      
      }
-*/
+ 
 
  
  

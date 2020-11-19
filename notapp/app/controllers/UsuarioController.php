@@ -12,6 +12,14 @@ class UsuarioController{
       //  $this->usuario = new Usuario();
 
     }
+
+    public function registrar($usuarioPOST){
+
+        $r=  Usuario::Create($usuarioPOST);
+
+        return $r;
+
+    }
     
     function login($usuario, $contrasena){ 
      // $r=  $this->usuario -> login($usuario, $contrasena);
@@ -27,7 +35,7 @@ class UsuarioController{
                $r->result[0]["tipo"]
            ); 
            session_start(); 
-           $_SESSION["usuario"] = $usuario;
+           $_SESSION["usuario"] = unserialize($usuario);
 
        }
 

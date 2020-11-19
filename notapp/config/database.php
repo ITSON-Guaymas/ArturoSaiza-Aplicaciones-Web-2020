@@ -31,10 +31,10 @@ class MySQL{
   }
 
 
-  public function insert(){
+  public function insert($consulta){
     $resultado = mysqli_query($this->conexion,$consulta);
     if($resultado){ 
-      return mysqli_insert_id($conn); 
+      return mysqli_insert_id($this->conexion); 
     } else { 
       return false;
     }

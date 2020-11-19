@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+$usuario =  serialize($_SESSION["usuario"]);
+
 if(!isset($_SESSION["usuario"])){
   header("location:login.php");
 }
@@ -50,7 +52,7 @@ if(!isset($_SESSION["usuario"])){
 <pre>
 <?php
 
-print_r($_SESSION["usuario"]);
+print_r($usuario);
 
 ?>
 </pre>          
