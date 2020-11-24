@@ -1,6 +1,10 @@
+<?php include("includes/comun.php"); ?>
 <?php
  include_once("app/controllers/NotasController.php");
+ include_once("app/models/Usuario.php");
+
  use  app\controllers\NotasController;
+ use  app\models\Usuario;
 
  $notasController = new NotasController();
  
@@ -14,7 +18,7 @@
 
  
  
- $todasLasNotas =  $notasController->lista();
+ $todasLasNotas =  $notasController->lista($usuario["id"]);
 
 ?>
 
@@ -59,6 +63,22 @@
           <div class="col-12">
             <!-- Default box -->
 <!-- desde aqui podemos cambiar todo el contenido -->
+
+<?php if(isset($_GET['notaagregada'])){ ?>
+<div class="alert alert-success alert-dismissible">
+<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+<h5><i class="icon fas fa-check"></i> Bien!</h5>
+Nota agregada correctamente!
+</div>
+<?php } ?>
+
+<?php if(isset($_GET['eliminar'])){ ?>
+<div class="alert alert-danger alert-dismissible">
+<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+<h5><i class="icon fas fa-check"></i> Notas!</h5>
+Se elimino la nota Correctamente!
+</div>
+<?php } ?>
 
 <p>  
 <a href="notasAgregar.php" class="btn btn-success">Agregar</a>  <br> 

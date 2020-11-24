@@ -38,9 +38,12 @@ class Nota{
     }
 
 
-    public static function all(){
+    public static function all($idUsuario=0){
+        $where ="";
+        if($idUsuario!=0){  $where =" where usuario= $idUsuario";  }
+
         $mysql = new MYSQL();
-        $sql = "select * from notas order by id DESC";
+        $sql = "select * from notas $where order by id DESC";
         $consulta =  $mysql->consulta($sql);
         return  $mysql->get($consulta);
     }
@@ -60,6 +63,23 @@ class Nota{
          
 
     }
+
+    public static function update($notaPOST){
+    $mysql = new MYSQL();   
+ 
+    $sql = "UPDATE  notas SET 
+    titulo='$notaPOST[titulo]', 
+    cuerpo='$notaPOST[cuerpo]', 
+    tipo='$notaPOST[tipo]', 
+    fechaRecordar='$notaPOST[fechaRecordar]', 
+    realizada='$notaPOST[realizada]',
+    usuario='$notaPOST[usuario]'  
+    WHERE id=$notaPOST[id]";
+
+   return  $mysql->consulta($sql); 
+    }
+
+   // 
 
 
 }

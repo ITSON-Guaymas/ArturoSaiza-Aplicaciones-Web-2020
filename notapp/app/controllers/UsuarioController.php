@@ -20,12 +20,13 @@ class UsuarioController{
         return $r;
 
     }
-    
+    /*
     function login($usuario, $contrasena){ 
      // $r=  $this->usuario -> login($usuario, $contrasena);
      $r=  Usuario::login($usuario, $contrasena);
        
        if($r->count >0){
+
            $usuario = new Usuario(
                $r->result[0]["id"],
                $r->result[0]["nombre"],
@@ -34,14 +35,31 @@ class UsuarioController{
                $r->result[0]["contrasena"],
                $r->result[0]["tipo"]
            ); 
-           session_start(); 
-           $_SESSION["usuario"] = unserialize($usuario);
+           session_start();
+           $_SESSION["usuario"] =  $usuario; 
+      
 
        }
 
        return $r;
 
     }
+*/
+    function login($usuario, $contrasena){ 
+      
+        $r =  Usuario::login($usuario, $contrasena);
+          
+          if($r->count >0){
+    
+              session_start();
+              $_SESSION["usuario"] = $r->result[0]; 
+         
+   
+          }
+   
+          return $r;
+   
+       }
 
 
     public function logout(){

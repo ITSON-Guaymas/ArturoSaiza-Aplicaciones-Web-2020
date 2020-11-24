@@ -1,3 +1,4 @@
+<?php include("includes/comun.php"); ?>
 <?php
 include_once("app/controllers/NotasController.php");
 use app\controllers\NotasController;
@@ -13,11 +14,12 @@ if(isset($_POST["titulo"])){
   }else{
     $error="Completa correctamente el formulario";
   }
-
-  /*echo "<br>";
-   print_r($_POST);
-   echo "<br>";*/
-}
+  
+/* 
+ echo "<pre>";
+   var_dump($_POST);
+   echo "</pre>"; 
+} */
 
 ?>
 
@@ -98,7 +100,7 @@ if(isset($_POST["titulo"])){
           <input class="form-control" type="checkbox" name="realizada">
         </div>
 
-        <input class="form-control col-md-4" type="hidden" name="usuario" value="1">
+        <input class="form-control col-md-4" type="hidden" name="usuario" value="<?=$usuario['id']; ?>">
         <!-- <input type="text" name="fecha">  -->
 
         <div class="form-group col-md-12">

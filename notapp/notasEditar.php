@@ -1,3 +1,4 @@
+<?php include("includes/comun.php"); ?> 
 <?php
 include_once("app/controllers/NotasController.php");
 use app\controllers\NotasController;
@@ -6,9 +7,20 @@ use app\controllers\NotasController;
 
   $notasC = new NotasController();
 
+
+  if(isset($_POST['titulo'])){
+
+    $r= $notasC -> editar($_POST);
+    
+
+
+    
+  }
+
+
   $nota = $notasC->get($_GET['id']);
 
- 
+
 
 
   /*
@@ -54,7 +66,26 @@ use app\controllers\NotasController;
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1>Editar nota</h1>
-            <p><?= isset($error)? $error : " "  ; ?> </p>
+
+<?php if($r){ ?>
+      <div class="alert alert-success alert-dismissible">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+      <h5><i class="icon fas fa-check"></i> Bien!</h5>
+      La nota se edito correctamente!
+      </div>
+<?php }else{ ?>
+
+      <div class="alert alert-danger alert-dismissible">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+      <h5><i class="icon fas fa-check"></i> Error!</h5>
+      No se pudo completar la edicion!
+      </div>
+
+<?php } ?>
+
+
+
+
           </div>
           
         </div>
@@ -103,19 +134,37 @@ use app\controllers\NotasController;
            >
         </div>
 
+
+      <?php if($nota["realizada"]){ ?>
+       
         <div class="form-group col-md-4">
           <label for="">Se realizo la tarea</label>
           <input class="form-control" type="checkbox"
-          value="<?= $nota["realizada"]; ?>"
-           name="realizada">
+          checked
+          name="realizada">
         </div>
 
-        <input class="form-control col-md-4" type="hidden" name="usuario"
-        value="<?= $nota["usuario"]; ?>">
-        <!-- <input type="text" name="fecha">  -->
+        <?php }else{  ?> 
+        
+          <div class="form-group col-md-4">
+          <label for="">Se realizo la tarea</label>
+          <input class="form-control" type="checkbox" 
+          name="realizada">
+        </div> 
+
+          <?php   } ?>
+
+    
+
+
+
+        <input  type="hidden" name="usuario" value="<?= $nota["usuario"]; ?>">
+
+        <input  type="hidden" name="id" value="<?= $nota["id"]; ?>">
+ 
 
         <div class="form-group col-md-12">
-          <button type="submit" class="btn btn-success"> Agregar </button>
+          <button type="submit" class="btn btn-success"> Guardar </button>
         </div>
     </form>
 

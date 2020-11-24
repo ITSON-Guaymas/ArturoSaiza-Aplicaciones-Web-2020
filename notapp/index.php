@@ -1,13 +1,6 @@
-<?php
-session_start();
+<?php include("includes/comun.php"); ?>
 
-$usuario =  serialize($_SESSION["usuario"]);
 
-if(!isset($_SESSION["usuario"])){
-  header("location:login.php");
-}
-
-?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
